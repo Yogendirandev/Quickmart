@@ -20,9 +20,9 @@ export default function Header () {
     <nav className="navbar row">
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
-            <Link to="/">
-              <h1>Quickmart</h1>
-            </Link>
+          <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+          <h1>Quickmart</h1>
+        </Link>
             </div>
         </div>
   
