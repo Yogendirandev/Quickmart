@@ -40,7 +40,7 @@ import {
     updateUserFail
 
 } from '../slices/userSlice'
-import axios from 'axios';
+import axios from '../axiosconfig';
 
 export const login = (email, password) => async (dispatch) => {
 

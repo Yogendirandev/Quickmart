@@ -1,5 +1,5 @@
 import {addCartItemRequest, addCartItemSuccess} from '../slices/cartSlice';
-import axios from 'axios'
+import axios from '../axiosconfig';
 
 export const addCartItem = (id, quantity) => async(dispatch) => {
     try {
