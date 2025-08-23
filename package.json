@@ -1,12 +1,15 @@
-"scripts": {
-  "start": "node backend/server.js",
-  "dev": "nodemon backend/server.js",
-  "prod": "NODE_ENV=production node backend/server.js",
-  "seeder": "node backend/utils/seeder.js"
-}
-,
-  "author": "JV Logesh",
+{
+  "name": "Quickmart",
+  "version": "1.0.0",
+  "description": "ecommerce using MERN stack",
+  "main": "backend/server.js",
+  "author": "Yogi",
   "license": "ISC",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "seeder": "node backend/utils/seeder.js"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "bcrypt": "^5.1.1",
