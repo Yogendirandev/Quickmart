@@ -5,6 +5,16 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 const dotenv = require('dotenv');
 dotenv.config({path:path.join(__dirname,"config/config.env")});
+const cors = require("cors");
+
+// CORS setup
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://quickmart-woad.vercel.app"
+  ],
+  credentials: true
+}));
 
 
 app.use(express.json());
