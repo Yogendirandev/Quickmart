@@ -4,20 +4,22 @@ const errorMiddleware = require('./middlewares/error');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const dotenv = require('dotenv');
-const cors = require("cors");
+const cors = require('cors');
 
-// Load env vars
+// Load environment variables
 dotenv.config({ path: path.join(__dirname, "config/config.env") });
 
-// ✅ CORS setup
-app.use(cors({
+// ✅ CORS setup (must be before routes)
+const corsOptions = {
   origin: [
     "http://localhost:3000",
     "https://quickmart-woad.vercel.app"
   ],
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"]
-}));
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // handle preflight requests
 
 // Middlewares
 app.use(express.json());
@@ -35,7 +37,7 @@ app.use('/api/v1/', auth);
 app.use('/api/v1/', order);
 app.use('/api/v1/', payment);
 
-// Serve frontend (production only)
+// Serve frontend in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, '../frontend/build')));
   app.get('*', (req, res) => {
