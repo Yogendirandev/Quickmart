@@ -1,29 +1,38 @@
 const app = require('./app');
 const path = require('path');
 const connectDatabase = require('./config/database');
+const cors = require("cors");
 
+// CORS setup
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://quickmart-woad.vercel.app"
+  ],
+  credentials: true
+}));
 
+// DB connection
 connectDatabase();
 
-const server = app.listen(process.env.PORT,()=>{
-    console.log(`My Server listening to the port: ${process.env.PORT} in  ${process.env.NODE_ENV} `)
-})
+const server = app.listen(process.env.PORT, () => {
+  console.log(`My Server listening to the port: ${process.env.PORT} in ${process.env.NODE_ENV}`);
+});
 
-process.on('unhandledRejection',(err)=>{
-    console.log(`Error: ${err.message}`);
-    console.log('Shutting down the server due to unhandled rejection error');
-    server.close(()=>{
-        process.exit(1);
-    })
-})
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (err) => {
+  console.log(`Error: ${err.message}`);
+  console.log('Shutting down the server due to unhandled rejection error');
+  server.close(() => {
+    process.exit(1);
+  });
+});
 
-process.on('uncaughtException',(err)=>{
-    console.log(`Error: ${err.message}`);
-    console.log('Shutting down the server due to uncaught exception error');
-    server.close(()=>{
-        process.exit(1);
-    })
-})
-
-
-
+// Handle uncaught exceptions
+process.on('uncaughtException', (err) => {
+  console.log(`Error: ${err.message}`);
+  console.log('Shutting down the server due to uncaught exception error');
+  server.close(() => {
+    process.exit(1);
+  });
+});
