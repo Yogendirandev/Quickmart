@@ -1,16 +1,6 @@
 const app = require('./app');
 const path = require('path');
 const connectDatabase = require('./config/database');
-const cors = require("cors");
-
-// CORS setup
-app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://quickmart-woad.vercel.app"
-  ],
-  credentials: true
-}));
 
 // DB connection
 connectDatabase();
